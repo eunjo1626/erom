@@ -1,0 +1,96 @@
+let index = 1;
+let img = document.querySelectorAll(".img").length;
+let move = 100 / img;
+let imgBox = document.querySelector(".imgBox");
+let current__page = document.querySelector(".current__page");
+let totalSlides = img - 2;
+
+function updatePage() {
+  let pageNumber;
+
+  if (index === 0) {
+    pageNumber = totalSlides; // 맨 앞 클론 → 마지막 슬라이드로 표시
+  } else if (index === img - 1) {
+    pageNumber = 1; // 맨 뒤 클론 → 첫 번째 슬라이드로 표시
+  } else {
+    pageNumber = index;
+  }
+
+  current__page.innerText = pageNumber;
+}
+
+mi();
+function mi() {
+  imgBox.style.transform = `translateX(-${move * index}%)`;
+  updatePage();
+}
+
+function prev() {
+  index--;
+  if (index < 0) {
+    index = img - 1;
+  }
+  mi();
+}
+function next() {
+  index++;
+  if (index >= img) {
+    index = 0;
+  }
+  mi();
+}
+function fixloop() {
+  if (index === img - 1) {
+    imgBox.style.transition = "none";
+    index = 1;
+    mi();
+    void imgBox.offsetWidth;
+    imgBox.style.transition = "all 0.3s linear";
+  } else if (index === 0) {
+    imgBox.style.transition = "none";
+    index = img - 2;
+    mi();
+    void imgBox.offsetWidth;
+    imgBox.style.transition = "all 0.3s linear";
+  }
+}
+
+const sec1_ul = document.querySelector(".sec1_ul");
+const sec1 = document.querySelector("#sec1");
+const sec2 = document.querySelector("#sec2");
+const sec1_Box = document.querySelector(".sec1_Box .text2");
+const sec2_leftBox = document.querySelector(
+  ".sec2_Box .container .outBox .leftBox"
+);
+const sec2_rightBox = document.querySelector(
+  ".sec2_Box .container .outBox .rightBox"
+);
+
+function startScroll() {
+  let sy = window.scrollY;
+  let s1 = sec1.offsetTop;
+  let s2 = sec2.offsetTop;
+
+  if (sy > 300) {
+    sec1_Box.classList.add("on");
+  } else {
+    sec1_Box.classList.remove("on");
+  }
+
+  if (sy > 400) {
+    sec1_ul.classList.add("on");
+  } else {
+    sec1_ul.classList.remove("on");
+  }
+
+  if (sy > s2 - 700) {
+    sec2_leftBox.classList.add("on");
+    sec2_rightBox.classList.add("on");
+  } else {
+    sec2_leftBox.classList.remove("on");
+    sec2_rightBox.classList.remove("on");
+  }
+}
+
+window.addEventListener("scroll", startScroll);
+startScroll(); // 페이지 로드 시 초기 실행
