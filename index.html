@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "Noto Sans KR", sans-serif;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      left: 0;
+      top: 0;
+      font-family: "Noto Sans KR", sans-serif;
+      line-height: 1.2;
+      font-weight: 400;
+      /* overflow: hidden; */
+    }
+
+    nav {
+      width: 100%;
+    }
+
+    .navBox {
+      max-width: 1620px;
+      height: 105px;
+      /* width: 1620px; */
+      margin: 5px auto 0;
+      /* margin-left: 0 auto; */
+      padding-left: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      box-sizing: border-box;
+    }
+
+    .navBox .textBox {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 100px;
+      font-size: 18px;
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 400;
+    }
+
+    .rightBox {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .slide {
+      width: 100%;
+      height: 800px;
+      /* background-color: green; */
+    }
+
+    .imgBox {
+      width: 700%;
+      height: 100%;
+      display: flex;
+      transition: all 0.5s linear;
+      z-index: 10;
+      /* background-color: rebeccapurple; */
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .slide__event {
+      transition: all 1s linear;
+    }
+
+    .imgBox .img {
+      width: calc(100% / 7);
+      height: 100%;
+      object-fit: cover;
+      /* background-size랑 동일 */
+      position: relative;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      transition: all 1s linear;
+    }
+
+    .imgBox .img1 {
+      background-image: url(../IMG/이롬01.png);
+    }
+
+    .imgBox .img2 {
+      background-image: url(../IMG/이롬02.png);
+    }
+
+    .imgBox .img3 {
+      background-image: url(../IMG/이롬03.png);
+    }
+
+    .imgBox .img4 {
+      background-image: url(../IMG/이롬04.png);
+    }
+
+    .imgBox .img5 {
+      background-image: url(../IMG/이롬05.png);
+    }
+
+    .slide {
+      position: relative;
+      /* 기준 위치 */
+    }
+
+    .slideBox {
+      width: 255px;
+      height: 94px;
+      /* background-color: blue; */
+      z-index: 20;
+      position: absolute;
+      bottom: 50px;
+      right: 170px;
+      z-index: 30;
+    }
+
+    .slideBox .inBox {
+      width: 255px;
+      height: 94px;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      bottom: -20px;
+    }
+
+    .inBox button {
+      border: none;
+      background-color: transparent;
+      font-weight: bold;
+    }
+
+    /* 이미지 안에 숫자랑 텍스트박스 */
+    .imgBox .outBox {
+      width: 780px;
+      height: 634px;
+      /* background-color: aqua; */
+      display: flex;
+      overflow: hidden;
+      margin-left: 180px;
+      margin-top: 130px;
+    }
+
+    .outBox .num {
+      width: 12%;
+      height: 100%;
+      /* background-color: red; */
+      font-size: 24px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .outBox .textBox {
+      width: 670px;
+      height: 100%;
+      /* background-color: gold; */
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 15px;
+      margin-left: 2px;
+      font-family: "Noto Sans KR", sans-serif;
+      font-size: 18px;
+    }
+
+    .outBox .textBox .text1 {
+      width: 66px;
+      height: 40px;
+      background-color: #004f4a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      margin-top: 0px;
+    }
+
+    .tit {
+      font-size: 40px;
+      margin-bottom: 40px;
+    }
+
+    .tit strong {
+      color: #90bd20;
+    }
+
+    .look {
+      width: 198px;
+      height: 54px;
+      background: linear-gradient(90deg,
+          rgba(0, 79, 74, 1) 0%,
+          rgba(34, 191, 165, 1) 100%);
+      color: white;
+      text-align: center;
+      line-height: 54px;
+      border-radius: 30px;
+      margin-top: 70px;
+    }
+
+    /* 두 번째 슬라이드 이미지 */
+    .img2 .outBox .textBox .text1 {
+      width: 140px;
+      height: 40px;
+      background-color: #004f4a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      margin-top: 0px;
+    }
+
+    /* 세 번째 슬라이드 이미지 */
+    .outBox .num2 {
+      width: 12%;
+      height: 100%;
+      /* background-color: red; */
+      font-size: 24px;
+      display: flex;
+      align-items: flex-start;
+      color: white;
+    }
+
+    .outBox .textBox2 .text2 {
+      width: 178px;
+      height: 40px;
+      background-color: #004f4a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      margin-top: 0px;
+    }
+
+    .outBox .textBox2 {
+      color: white;
+      width: 670px;
+      height: 100%;
+      /* background-color: gold; */
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 15px;
+      margin-left: 2px;
+      font-family: "Noto Sans KR", sans-serif;
+      font-size: 18px;
+    }
+
+    .tit2 {
+      font-size: 40px;
+      margin-bottom: 40px;
+      color: white;
+    }
+
+    .tit2 strong {
+      color: #90bd20;
+    }
+
+    .tit2 p {
+      color: white;
+    }
+
+    /* 이미지 슬라이드4번째 */
+    .outBox .textBox2 .text2_1 {
+      width: 177px;
+      height: 40px;
+      background-color: #004f4a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      margin-top: 0px;
+    }
+
+    /* 이미지 슬라이드 5번째 */
+    .outBox .textBox2 .text2 {
+      width: 103px;
+      height: 40px;
+      background-color: #004f4a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      margin-top: 0px;
+    }
+
+    /* 섹션1 시작 */
+    .sec1_Box {
+      width: 100%;
+      height: 790px;
+      /* background-color: red; */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: visible;
+      padding: 0 20px;
+    }
+
+    .container {
+      max-width: 1560px;
+      width: 100%;
+      height: 500px;
+      box-sizing: border-box;
+      /* background-color: rgb(212, 255, 0); */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    .text2 {
+      width: 1560px;
+      height: 165px;
+      /* background-color: violet; */
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .text2 h2 {
+      position: relative;
+      z-index: 1;
+    }
+
+    .text2 .cir {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #90bd20;
+      position: absolute;
+      margin-top: -6px;
+      margin-left: -15px;
+      flex-shrink: 0;
+      z-index: -1;
+    }
+
+    li,
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .sec1_ul {
+      width: 100%;
+      max-width: 1560px;
+      /* height: 237px; */
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      /* gap: 10px; */
+      margin: 50px auto 0;
+      padding: 0;
+      /* overflow: visible; */
+      box-sizing: border-box;
+    }
+
+    .sec1_ul li {
+      flex: 1 0 20%;
+      /* min-width: 311px; */
+      height: 237px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid #666;
+      /* background-color: bisque; */
+      box-sizing: border-box;
+    }
+
+    .sec1_ul li:last-child {
+      border-right: none;
+    }
+
+    .sec1_ul li .txt {
+      font-family: "Montserrat", sans-serif;
+      color: #666;
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .sec1_ul img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* 섹션2 시작 */
+    .sec2_Box {
+      width: 100%;
+      height: 510px;
+      /* background-color: blueviolet; */
+      display: flex;
+      justify-content: center;
+    }
+
+    .sec2_Box .container {
+      width: 1620px;
+      height: 510px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+    }
+
+    .sec2_Box .container .outBox {
+      display: flex;
+      box-sizing: border-box;
+      width: 1560px;
+      height: 510px;
+      /* background-color: aquamarine; */
+    }
+
+    .sec2_Box .container .outBox .leftBox {
+      width: 770px;
+      height: 325px;
+      /* background-color: orangered; */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    .sec2_Box .container .outBox .leftBox .text {
+      width: 338px;
+      height: 324px;
+      /* background-color: yellow; */
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      box-sizing: border-box;
+      padding: 12px;
+    }
+
+    .leftBox .text p {
+      align-self: flex-start;
+      text-align: left;
+      margin: 0;
+      font-size: 20px;
+      color: #3a3a3a;
+    }
+
+    .leftBox .text h4 {
+      margin-top: -70px;
+    }
+
+    .aa {
+      width: 34px;
+      height: 34px;
+      background-color: #90bd20;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 34px;
+      display: inline-block;
+      margin-left: 8px;
+      font-weight: bold;
+    }
+
+    .sec2_Box .container .outBox .leftBox .left_img {
+      box-sizing: border-box;
+      width: 297px;
+      height: 193px;
+      margin-left: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    .leftBox .left_img img {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-left: 30px;
+    }
+
+    /* 섹션2 오른쪽박스 */
+    .sec2_Box .container .outBox .rightBox {
+      width: 790px;
+      height: 325px;
+      /* background-color: rgb(233, 104, 192); */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    .sec2_Box .container .outBox .rightBox .text {
+      width: 384px;
+      height: 324px;
+      /* background-color: rgb(29, 252, 252); */
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-between;
+      box-sizing: border-box;
+      padding: 12px;
+    }
+
+    .rightBox .text p {
+      align-self: flex-end;
+      text-align: right;
+      margin: 0;
+      font-size: 20px;
+      color: #3a3a3a;
+    }
+
+    .rightBox .text h4 {
+      margin-top: -70px;
+    }
+
+    .rightBox .text .aa {
+      width: 34px;
+      height: 34px;
+      background-color: #004f4a;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 34px;
+      display: inline-block;
+      margin-left: 8px;
+      font-weight: bold;
+    }
+
+    .sec2_Box .container .outBox .rightBox .right_img {
+      box-sizing: border-box;
+      width: 239px;
+      height: 259px;
+      margin-left: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    .rightBox .right_img img {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-right: 30px;
+    }
+
+    /* 섹션3 시작 */
+    .sec3_Box {
+      width: 100%;
+      height: 860px;
+      background-color: #004f4a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sec3_container {
+      width: 1620px;
+      height: 560px;
+      /* background-color: aquamarine; */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* 섹션3 왼쪽박스 시작 */
+    .sec3_container .leftBox {
+      width: 30%;
+      height: 100%;
+      /* background-color: rgb(246, 203, 110); */
+    }
+
+    .sec3_container .leftBox .textBox {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 30px;
+    }
+
+    .sec3_container .leftBox .textBox .cir {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #90bd20;
+      position: absolute;
+      margin-top: -6px;
+      margin-left: -15px;
+      flex-shrink: 0;
+    }
+
+    .sec3_container .tit3 {
+      font-size: 40px;
+      color: #dadada;
+      position: relative;
+      z-index: 2;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    .sec3_container .tit4 {
+      font-size: 52px;
+      font-family: "Montserrat", sans-serif;
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .sec3_container .view {
+      margin-top: 220px;
+    }
+
+    .sec3_container .aa {
+      width: 34px;
+      height: 34px;
+      background-color: #d2ecea;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 34px;
+      display: inline-block;
+      margin-left: 8px;
+      font-weight: bold;
+      color: #000;
+    }
+
+    /* 오른쪽 박스 시작 */
+    .sec3_container .rightBox {
+      width: 58%;
+      height: 100%;
+      /* background-color: orchid; */
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .sec3_container .rightBox div {
+      width: 100%;
+      height: 100%;
+      /* background-color: rgb(79, 171, 237); */
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .sec3_container .rightBox>div {
+      border-top: 2px solid #eaeaea;
+    }
+
+    .sec3_container .rightBox>div:last-child {
+      border-bottom: 2px solid #eaeaea;
+    }
+
+    .text3 {
+      display: flex;
+      flex-direction: column;
+      /* align-items: center; */
+      justify-content: center;
+      text-align: left;
+      padding: 48px 30px;
+    }
+
+    .text3 .tit {
+      font-weight: 600;
+      font-size: 24px;
+      color: white;
+    }
+
+    .text3 .txt {
+      font-size: 16px;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .text3 .date {
+      color: #aaa;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    /* 섹션4 시작 */
+    .sec4_Box {
+      width: 100%;
+      height: 1142px;
+      /* background-color: rgb(240, 240, 189); */
+      padding: 110px 0 150px;
+    }
+
+    .sec4_Box .sec4_container {
+      width: 1620px;
+      height: 882px;
+      /* background-color: rgb(192, 255, 199); */
+      max-width: 1620px;
+      box-sizing: border-box;
+      margin: 0 auto;
+    }
+
+    .textBox4 {
+      width: 100%;
+      height: 35%;
+      /* background-color: orchid; */
+    }
+
+    .textBox4 .cir {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #90bd20;
+      position: absolute;
+      margin-bottom: -30px;
+      margin-left: -15px;
+    }
+
+    .textBox4 .tit5 {
+      font-size: 32px;
+      color: #666;
+      font-weight: 700;
+      line-height: 56px;
+      position: relative;
+    }
+
+    .textBox4 .text4 {
+      font-size: 52px;
+      color: #000;
+      font-weight: 700;
+      margin: 50px 0 95px;
+    }
+
+    .box {
+      width: 100%;
+      height: 65%;
+      /* background-color: blue; */
+      display: flex;
+      position: relative;
+    }
+
+    .box li {
+      flex: 1;
+      position: relative;
+    }
+
+    li,
+    ol,
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .box .box01 {
+      height: 100%;
+      background-image: url(../IMG/section04_img01.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: relative;
+    }
+
+    .box .box02 {
+      height: 100%;
+      background-image: url(../IMG/section04_img02.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .box .box03 {
+      height: 100%;
+      background-image: url(../IMG/section04_img03.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .box .box04 {
+      height: 100%;
+      background-image: url(../IMG/section04_img04.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .textBox5 {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 60px 40px 68px;
+    }
+
+    .text5 {
+      font-size: 20px;
+      color: white;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+
+    .tit6 {
+      font-size: 46px;
+      color: white;
+    }
+
+    /* footer */
+    .footerBox {
+      width: 100%;
+      height: 248px;
+      background-color: #f8cfcf;
+      font-size: 14px;
+      background-color: #111111;
+      padding: 0px 0px 58px;
+      box-sizing: border-box;
+    }
+
+    .foot_container {
+      width: 1620px;
+      height: 190px;
+      /* background-color: #91c7f9; */
+      box-sizing: border-box;
+      padding: 0px 30px;
+      margin: 0px auto;
+    }
+
+    .fnb {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      border-bottom: 1px solid #343434;
+      box-sizing: border-box;
+      padding: 31px 0px;
+    }
+
+    .fnb .fnb_list {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      color: white;
+      font-weight: bold;
+      gap: 70px;
+    }
+
+    .footer .fnb .fnb_list li {
+      margin-left: 38px;
+    }
+
+    .footer .fnb .all_company {
+      position: relative;
+      color: white;
+      font-weight: bold;
+    }
+
+    .all_company>label {
+      width: 225px;
+      height: 38px;
+      display: flex;
+      border-top: 1px solid #666;
+      border-bottom: 1px solid #eee;
+      box-sizing: border-box;
+      font-size: 16px;
+      color: #dadada;
+      padding: 0 5px;
+      height: 38px;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .info_line {
+      color: white;
+    }
+
+    .copyright {
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="navBox">
+      <img src="./IMG/이롬logo1_g.png" alt="logo" />
+      <div class="textBox">
+        <p>이롬그룹</p>
+        <p>사업분야</p>
+        <p>이롬</p>
+        <p>이롬헬스케어</p>
+        <p>뉴스&홍보</p>
+        <p>이롬人</p>
+      </div>
+      <div class="rightBox">
+        <img src="./IMG/국기.png" alt="korea" />
+        <img src="./IMG/메뉴바캡처.PNG" alt="menu" />
+      </div>
+    </div>
+  </nav>
+  <div class="main">
+    <div class="slide">
+      <div class="imgBox" ontransitionend="fixloop()">
+        <div class="img img5">
+          <div class="outBox">
+            <div class="num2">05</div>
+            <div class="textBox2">
+              <div class="text2">
+                <h3>꿈의학교</h3>
+              </div>
+              <h2 class="tit2"><strong>"집을 팔아서 스승을 사라"</strong><br>아이들의 더 큰 미래를 생각합니다.</h2>
+              <p>꿈의학교에서는 우리 아이들이 올바른 세계관과 비전, 실력을 겸비하여<br>언제 어디서나 마음껏 꿈을 펼치고 성자할 수 있도록 사랑으로 양육하고 있습니다.</p>
+              <div class="look">자세히보기</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="img img1">
+          <div class="outBox">
+            <div class="num">01</div>
+            <div class="textBox">
+              <div class="text1">
+                <h3>이롬</h3>
+              </div>
+              <h2 class="tit">먹거리에서 생활습관까지<br><strong>건강한 개인과 사회에 기여</strong>하겠습니다.</h2>
+              <p>이롬은 지나칠 수 있는 자연에서 인간에게 유익한 힘을 발견하는 지혜,<br>과학의 힘으로 자연을 담아 건강에 대한 새로운 해답을 제공해 나가겠습니다.</p>
+              <div class="look">자세히보기</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="img img2 ">
+          <div class="outBox">
+            <div class="num">02</div>
+            <div class="textBox">
+              <div class="text1">
+                <h3>이롬헬스케어</h3>
+              </div>
+              <h2 class="tit">삶의 가치를 전달할 수 있도록<br><strong>건강 라이프 스타일을 연구</strong>합니다.</h2>
+              <p>이롬헬스케어는 고객의 삶 속에 깊이 들어가 먹을거리를 시작으로<br>생활전반의 라이프 스타일을 제공하여, 행복하고 건강한 삶을 선물하고 있습니다.</p>
+              <div class="look">자세히보기</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="img img3">
+          <div class="outBox">
+            <div class="num2">03</div>
+            <div class="textBox2">
+              <div class="text2">
+                <h3>사랑의병원</h3>
+              </div>
+              <h2 class="tit2"><strong>면역과 의학적 암 예방</strong>까지<br>협진시스템을 운영하고 있습니다.</h2>
+              <p>사랑의병원은 전문 의료진단과 첨단 의료장비를 기반으로 협진 시스템을 운영,<br>질병예방과 재발방지 등 진단항목 중심의 건강검진프로그램 운영하고 있습니다.
+              </p>
+              <div class="look">자세히보기</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="img img4">
+          <div class="outBox">
+            <div class="num2">04</div>
+            <div class="textBox2">
+              <div class="text2_1">
+                <h3>국제사랑의봉사단</h3>
+              </div>
+              <h2 class="tit2"><strong>'세계는 나의 교실','최후의 혁명은 사랑'</strong><br>고통받는 이웃듣을 섬김고 있습니다.</h2>
+              <p>국제사랑의봉사단은 전 세계의 고통받는 이웃들을 사랑으로 섬기고<br>전인적 필요를 채워 주고자 전 세계 40여개국에서 활동하고 있습니다.</p>
+              <div class="look">자세히보기</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="img img5">
+          <div class="outBox">
+            <div class="num2">05</div>
+            <div class="textBox2">
+              <div class="text2">
+                <h3>꿈의학교</h3>
+              </div>
+              <h2 class="tit2"><strong>"집을 팔아서 스승을 사라"</strong><br>아이들의 더 큰 미래를 생각합니다.</h2>
+              <p>끔의학교에서는 우리 아이들이 올바른 세계관과 비전, 실력을 겸비하여<br>언제 어디서나 마음껏 꿈을 펼치고 성자할 수 있도록 사랑으로 양육하고 있습니다.</p>
+              <div class="look">자세히보기</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="img img1">
+          <div class="outBox">
+            <div class="num">01</div>
+            <div class="textBox">
+              <div class="text1">
+                <h3>이롬</h3>
+              </div>
+              <h2 class="tit">먹거리에서 생활습관까지<br><strong>건강한 개인과 사회에 기여</strong>하겠습니다.</h2>
+              <p>이롬은 지나칠 수 있는 자연에서 인간에게 유익한 힘을 발견하는 지혜,<br>과학의 힘으로 자연을 담아 건강에 대한 새로운 해답을 제공해 나가겠습니다.</p>
+              <div class="look">자세히보기</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slideBox">
+      <div class="inBox">
+        <button onclick="prev()"><img src="./IMG/prev.png" alt="leftBtn" /></button>
+        <div class="dis"><span class="current__page">
+            1
+          </span>|5</div>
+        <button onclick="next()"><img src="./IMG/next.png" alt="rightBtn" /></button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <section id="sec1">
+    <div class="sec1_Box">
+      <div class="container">
+        <div class="text2">
+          <h2 class="tit">
+            <i class="cir"></i>
+            위대함을 향한 이롬의 끊임없는 도전과 혁신
+          </h2>
+          <p class="txt">
+            "끊임없는 도전과 혁신으로 최적화된 제품을 개발, 유통하여"
+            <br><strong>건강한 개인과 건강한 사회에 기여하는 라이프케어 컴퍼니</strong>
+          </p>
+        </div>
+        <ul class="sec1_ul">
+          <li class="icon1">
+            <img src="./IMG/section01_icon01.png" alt="img" />
+            <span class="txt">BUSINESS</span>
+            <span class="more"></span>
+          </li>
+          <li class="icon2">
+            <img src="./IMG/section01_icon02.png" alt="img" />
+            <span class="txt">GLOBAL</span>
+            <span class="more"></span>
+          </li>
+          <li class="icon3">
+            <img src="./IMG/section01_icon03.png" alt="img" />
+            <span class="txt">BIO&MEDICAL</span>
+            <span class="more"></span>
+          </li>
+          <li class="icon4">
+            <img src="./IMG/section01_icon04.png" alt="img" />
+            <span class="txt">HUMAN</span>
+            <span class="more"></span>
+          </li>
+          <li class="icon5">
+            <img src="./IMG/section01_icon05.png" alt="img" />
+            <span class="txt">EDUCATION</span>
+            <span class="more"></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section id="sec2">
+    <div class="sec2_Box">
+      <div class="container">
+        <div class="outBox">
+          <div class="leftBox">
+            <div class="text">
+              <h5 style="font-size: 20px; color: #aaaaaa;">erom</h5>
+              <h4 style="font-size: 44px; color: #004f4a;">이롬</h4>
+              <p class="txt" style="font-size: 20px; color: #3a3a3a;">건강한 개인과 건강한 사회에 기여하는
+                <br>
+                토탈 라이프케어 컴퍼니
+              </p>
+              <a style="font-size: 14px; color: #000000">자세히보기<span class="aa">→</span></a>
+            </div>
+            <div class="left_img">
+              <img src="./IMG/section02_prd01.png" alt="img">
+            </div>
+          </div>
+          <div class="rightBox">
+            <div class="right_img">
+              <img src="./IMG/section02_prd02.png" alt="img">
+            </div>
+            <div class="text">
+              <h5 style="font-size: 20px; color: #aaaaaa;">eromHealthcare</h5>
+              <h4 style="font-size: 44px; color: #004f4a;">이롬헬스케어</h4>
+              <p class="txt" style="font-size: 20px; color: #3a3a3a;">건강한 라이프스타일,
+                <br>
+                이롬 헬스케어가 함께합니다
+              </p>
+              <a style="font-size: 14px; color: #000000">자세히보기<span class="aa">→</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="sec3">
+    <div class="sec3_Box">
+      <div class="sec3_container">
+        <div class="leftBox">
+          <div class="textBox">
+            <i class="cir"></i>
+            <h3 class="tit3">life care company,<br>erom group</h3>
+            <h2 class="tit4"> NEWS</h2>
+            <a class="view" style="font-size: 14px; color: #ffffff">VIEW MORE<span class="aa">→</span></a>
+          </div>
+        </div>
+        <div class="rightBox">
+          <div>
+            <div class="text3">
+              <span class="tit">(주)이롬, '미네랄워터 리프레쉬' 2025 미스코리아 공식 후원</span>
+              <span class="txt">.</span>
+              <span class="date">25.08.11</span>
+            </div>
+          </div>
+          <div>
+            <div class="text3">
+              <span class="tit">의왕시 첫 종합병원, 응급의료센터 포함한 스마트병원으로 조성</span>
+              <span class="txt"></span>
+              <span class="date">25.06.13</span>
+            </div>
+          </div>
+          <div>
+            <div class="text3">
+              <span class="tit">(주)이롬, '미네랄워터 리프레쉬'로 2년 연속 OBS전국 배드민턴대회 공식협찬 </span>
+              <span class="txt"></span>
+              <span class="date">25.06.13</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="sec4">
+    <div class="sec4_Box">
+      <div class="sec4_container">
+        <div class="textBox4">
+          <i class="cir"></i>
+          <h3 class="tit5">이롬그룹은 과학의 힘으로 자연을 담아<br>건강에 대한 새로운 해답을 제공해 나가겠습니다</h3>
+          <h2 class="text4">erom company About</h2>
+        </div>
+        <ul class="box">
+
+          <li class="box01">
+            <div class="textBox5">
+              <p class="text5">erom About</p>
+              <h4 class="tit6">이롬그룹<br>소개</h4>
+            </div>
+
+          </li>
+          <li class="box02">
+            <div class="textBox5">
+              <p class="text5">Hwang,SeongJu</p>
+              <h4 class="tit6">황성주<br>박사</h4>
+            </div>
+
+          </li>
+          <li class="box03">
+            <div class="textBox5">
+              <p class="text5">Brand Identity</p>
+              <h4 class="tit6">브랜드<br>아이덴티티</h4>
+            </div>
+          </li>
+          <li class="box04">
+            <div class="textBox5">
+              <p class="text5">Contact US</p>
+              <h4 class="tit6">Contact<br>US</h4>
+            </div>
+
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+  <footer id="footer">
+    <div class="footerBox">
+      <div class="foot_container">
+        <div class="fnb">
+          <ul class="fnb_list">
+            <li>개인정보처리방침</li>
+            <li>이용약관</li>
+          </ul>
+          <div class="all_company show">
+            <label>Family Site</label>
+          </div>
+        </div>
+        <div class="info_line">
+          <ul class="info">
+            <li>
+              <span>ADDRESS: 서울특별시 강남구 역삼로 552 (대치동, KM빌딩) 4층, 5층</span>
+              <span>TEL: 080-345-1111 </span>
+              <span>EMAIL: webmaster@erom.co.kr</span>
+            </li>
+          </ul>
+        </div>
+        <p class="copyright">
+          copyright (c) <strong>erom</strong> GROUP all rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    let index = 1;
+    let img = document.querySelectorAll(".img").length;
+    let move = 100 / img;
+    let imgBox = document.querySelector(".imgBox");
+    let current__page = document.querySelector(".current__page");
+    let totalSlides = img - 2;
+
+    function updatePage() {
+      let pageNumber;
+
+      if (index === 0) {
+        pageNumber = totalSlides; // 맨 앞 클론 → 마지막 슬라이드로 표시
+      } else if (index === img - 1) {
+        pageNumber = 1; // 맨 뒤 클론 → 첫 번째 슬라이드로 표시
+      } else {
+        pageNumber = index;
+      }
+
+      current__page.innerText = pageNumber;
+    }
+
+
+
+
+    mi();
+    function mi() {
+      imgBox.style.transform = `translateX(-${move * index}%)`;
+      updatePage();
+    }
+
+    function prev() {
+      index--;
+      if (index < 0) {
+        index = img - 1;
+      }
+      mi();
+    }
+    function next() {
+      index++;
+      if (index >= img) {
+        index = 0;
+      }
+      mi();
+    }
+    function fixloop() {
+      if (index === img - 1) {
+        imgBox.style.transition = "none";
+        index = 1;
+        mi();
+        void imgBox.offsetWidth;
+        imgBox.style.transition = "all 0.3s linear";
+      } else if (index === 0) {
+        imgBox.style.transition = "none";
+        index = img - 2;
+        mi();
+        void imgBox.offsetWidth;
+        imgBox.style.transition = "all 0.3s linear";
+      }
+    }
+  </script>
+</body>
+
+</html>
