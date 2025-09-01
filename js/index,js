@@ -39,6 +39,8 @@ function next() {
   }
   mi();
 }
+
+const id = setInterval(next, 3000);
 function fixloop() {
   if (index === img - 1) {
     imgBox.style.transition = "none";
