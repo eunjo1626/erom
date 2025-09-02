@@ -796,6 +796,7 @@ ul {
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
+  transition: all 0.5s linear;
 }
 
 .box .box02 {
@@ -804,6 +805,7 @@ ul {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  transition: all 0.5s linear;
 }
 
 .box .box03 {
@@ -812,6 +814,7 @@ ul {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  transition: all 0.5s linear;
 }
 
 .box .box04 {
@@ -824,6 +827,15 @@ ul {
 }
 .box .box04:hover {
   background-image: url(../IMG/section04_img04_over.png);
+}
+.box .box03:hover {
+  background-image: url(../IMG/section04_img03_over.png);
+}
+.box .box02:hover {
+  background-image: url(../IMG/section04_img02_over.png);
+}
+.box .box01:hover {
+  background-image: url(../IMG/section04_img01_over.png);
 }
 
 .textBox5 {
